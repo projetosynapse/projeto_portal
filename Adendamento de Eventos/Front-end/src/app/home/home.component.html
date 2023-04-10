@@ -1,0 +1,78 @@
+
+<header>
+  <div class="container">
+    <div class="imgHome">
+        <img src="./../../assets/FUNDACAO-SHUNJI-NISHIMURA-DE-TECNOLOGIA.webp" alt="logo-fnst">
+        <h1>Home</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a routerLink="/"><img src="assets/home.svg">Home</a></li>
+        <li><a routerLink="/tabela-adm"><img src="assets/usuario.svg">Usuários</a></li>
+        <li><a routerLink="/login"><img src="assets/sair.svg">Sair</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <div class="main-header">
+      <a routerLink="/cad-eventos"class="btn btn-primary">
+        <img src="assets/cadastro.svg">
+        Cadastrar Eventos
+      </a>
+    </div>
+
+    <section class="s-cards">
+      <div class="card" *ngFor="let card of agendamentos">
+        <div (click)="openModal()" class="card-header">
+          <div class="status-options">
+            <span class="status status-andamento">Em andamento</span>
+            <img src="assets/charm_menu-meatball.svg">
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="title">
+            <h6>{{card.nome}}</h6>
+            <img src="assets/edit-card.svg">
+          </div>
+
+          <ul class="info">
+            <li>
+              <img src="../../assets/data.svg" alt="">
+              <div class="text">
+                <p>{{card.data_inicio | date:"dd/MM/yyyy"}}</p>
+                <span>Data</span>
+              </div>
+            </li>
+            <li>
+              <img src="assets/time.svg" alt="">
+              <div class="text">
+                <p>{{card.hora_inicio}} - {{card.hora_fim}}</p>
+                <span>Horário</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="endereco">
+            <p>{{card.descricao}}</p>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+</main>
+
+<footer>
+  <section class="align-pagination">
+      <img src="assets/left-icon-next.svg">
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <img src="assets/right-icon-next.svg">
+  </section>
+</footer>

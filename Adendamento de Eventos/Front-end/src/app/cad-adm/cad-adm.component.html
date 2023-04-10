@@ -1,0 +1,45 @@
+<header>
+    <div class="container">
+        <div class="imgHome">
+            <img src="./../../assets/FUNDACAO-SHUNJI-NISHIMURA-DE-TECNOLOGIA.webp" alt="logo-fnst">
+            <h1>Cadastro Administradores</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a routerLink="/"><img src="assets/home.svg">Home</a></li>
+                <li><a routerLink="/tabela-adm"><img src="assets/usuario.svg">Usuários</a></li>
+                <li><a routerLink="/login"><img src="assets/sair.svg">Sair</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<form [formGroup]="inputsCadAdm" (submit)="enviarDadosUsuarios()">
+    <div class="campo">
+        <img src="../../assets/nome.svg" alt="">
+        <input formControlName="nome" id="nome" type="text" placeholder="Nome *" required>
+    </div>
+    <div class="campo">
+        <img src="../../assets/email.svg" alt="">
+        <input formControlName="email" id="email" type="text" placeholder="E-mail *" required>
+    </div>
+    <div class="campo">
+        <img src="../../assets/senha.svg" alt="">
+        <input formControlName="senha" id="senha" type="password" placeholder="Senha *" required>
+    </div>
+    
+    <div class="campo">
+        <img src="../../assets/instituicao.svg" >
+        <input formControlName="instituicao" id="instituicao" type="text" placeholder="Instituição *" required>
+    </div>
+    <div class="campo">
+        <img src="../../assets/cargo.svg"   >
+        <input formControlName="cargo" id="cargo" type="text" placeholder="Cargo *" required>
+    </div>
+    <div class="form-btn">
+        <button class="btn btn-primary" type="submit">Salvar</button>
+    </div>
+    <div class="form-btn1">
+        <button class="btn">Cancelar</button>
+    </div>
+</form>

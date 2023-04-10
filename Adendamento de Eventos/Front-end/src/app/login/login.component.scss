@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 250px;
+  .img-login{
+    img {
+      width: 450px;
+      height: 400px;
+    }
+  }
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+
+    .larguraBtn {
+      width: 244px;
+    } 
+
+    img:nth-child(1){
+      width: 100px;
+      height: 100px;
+    }
+
+    button {
+      border: none;
+    }
+    a {
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      color: black;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+    .align-content-title {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-bottom: 150px;
+    }
+    h1 {
+      color: var(--green-title);
+      font-weight: bold;
+      font-size: 2.2rem;
+    }
+
+  }
+}
+
+

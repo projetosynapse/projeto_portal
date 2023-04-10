@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="img-login">
+    <img src="./../../assets/img-login.svg">
+  </div>
+  <form [formGroup]="loginUsuario" (submit)="dadosLogin" class="login">
+      <div class="align-content-title">
+        <img src="./../../assets/FUNDACAO-SHUNJI-NISHIMURA-DE-TECNOLOGIA.webp">
+        <h1>Login</h1>
+      </div>
+        <div class="input-icon">
+          <input formControlName="email"type="text" placeholder="Email" required>
+          <img src="./../../assets/user.svg">
+        </div>
+        <div class="input-icon">
+          <input formControlName="senha"type="password" placeholder="Senha" required>
+          <img src="./../../assets/senha.svg">
+        </div>
+        <a>Esqueceu a senha?</a>
+        <button (click)="vazio()" class="btn btn-primary larguraBtn" type="submit">Acessar</button>
+      </form>
+</div>

@@ -1,0 +1,98 @@
+CREATE SCHEMA IF NOT EXISTS `agendamento_espaco` DEFAULT CHARACTER SET utf8 ;
+USE `agendamento_espaco` ;
+
+-- -----------------------------------------------------
+-- Table `agendamento_espaco`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `agendamento_espaco`.`usuario` (
+  `id` INT(10) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(75) NOT NULL,
+  `email` VARCHAR(256) NOT NULL,
+  `empresa` VARCHAR(75) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC),
+  UNIQUE INDEX `senha_UNIQUE` (`senha` ASC),
+  UNIQUE INDEX `cliente_id_UNIQUE` (`id` ASC),
+  PRIMARY KEY (`id`));
+
+
+-- -----------------------------------------------------
+-- Table `agendamento_espaco`.`espaco`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `agendamento_espaco`.`espaco` (
+  `id` INT(15) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(75) NOT NULL,
+  `ponto_referencia` VARCHAR(250) NOT NULL,
+  `descricao` VARCHAR(400) NULL,
+  UNIQUE INDEX `nome_espaco_UNIQUE` (`id` ASC),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC),
+  UNIQUE INDEX `ponto_referencia_UNIQUE` (`ponto_referencia` ASC))
+DEFAULT CHARACTER SET = cp1256;
+
+
+-- -----------------------------------------------------
+-- Table `agendamento_espaco`.`solicitacao`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `agendamento_espaco`.`solicitacao` (
+  `numero_solicitacao` INT(15) NOT NULL AUTO_INCREMENT,
+  `status` TINYINT NOT NULL,
+  `data_hora` DATETIME NOT NULL,
+  `descricao` VARCHAR(400) NULL,
+  `espaco` VARCHAR(75) NOT NULL,
+  `usuario_perfil` INT(10) NOT NULL,
+  `espaco_id` INT(15) NOT NULL,
+  PRIMARY KEY (`numero_solicitacao`, `usuario_perfil`, `espaco_id`),
+  UNIQUE INDEX `numero_de_solicitacao_UNIQUE` (`numero_solicitacao` ASC),
+  UNIQUE INDEX `status_UNIQUE` (`status` ASC),
+  UNIQUE INDEX `local_UNIQUE` (`espaco` ASC),
+  INDEX `fk_solicitacao_usuario_idx` (`usuario_perfil` ASC),
+  INDEX `fk_solicitacao_espaco1_idx` (`espaco_id` ASC),
+  CONSTRAINT `fk_solicitacao_usuario`
+    FOREIGN KEY (`usuario_perfil`)
+    REFERENCES `agendamento_espaco`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_solicitacao_espaco1`
+    FOREIGN KEY (`espaco_id`)
+    REFERENCES `agendamento_espaco`.`espaco` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+-- -----------------------------------------------------
+-- Table `agendamento_espaco`.`perfil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `agendamento_espaco`.`perfil` (
+  `id` INT(10) NOT NULL,
+  `nome` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC));
+
+
+-- -----------------------------------------------------
+-- Table `agendamento_espaco`.`usuario_e_perfil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `agendamento_espaco`.`usuario_e_perfil` (
+  `usuario_id` INT(10) NOT NULL,
+  `perfil_id` INT(10) NOT NULL,
+  PRIMARY KEY (`usuario_id`, `perfil_id`),
+  INDEX `fk_usuario_has_perfil_perfil1_idx` (`perfil_id` ASC),
+  INDEX `fk_usuario_has_perfil_usuario1_idx` (`usuario_id` ASC),
+  CONSTRAINT `fk_usuario_has_perfil_usuario1`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `agendamento_espaco`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_has_perfil_perfil1`
+    FOREIGN KEY (`perfil_id`)
+    REFERENCES `agendamento_espaco`.`perfil` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

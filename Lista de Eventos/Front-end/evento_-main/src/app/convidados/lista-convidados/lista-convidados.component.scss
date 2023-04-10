@@ -1,0 +1,51 @@
+
+
+//   // STATUS 
+
+th{
+  background-color: #D6EBD5;
+
+}
+  #status{
+    width: 1500px;
+    margin: 0 auto;
+    font-weight: 20px;
+margin-bottom: 60px;
+    
+  }
+
+  #status div{
+    width: 19%;
+    display: inline-block;
+ 
+    text-align: center;
+    line-height: 30px;
+  }
+.pi{
+  border-right: 1px solid;
+  border-left: 1px solid;
+  border-color:  #A3A3A3;
+}
+  .p2{
+    font-size: 14px;
+    color: #A3A3A3;
+    
+  }
+
+  .invite{
+    position: relative;
+    top: 6px;
+  }
+
+ .time, .x{
+  position: relative;
+  top: 3px;
+ }
+ #conteudo  button.btn.btn-edit{
+  background: #DA884D;
+  color: #fff;
+}
+#conteudo   .btn-delet{
+  background: #F04F65;
+  color: #fff;
+}
